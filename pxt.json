@@ -11,8 +11,7 @@
         "cue_advanced.ts",
         "cue_interrupts.ts",
         "_locales/cue-jsdoc-strings.json",
-        "_locales/cue-strings.json",
-        "icon.png"
+        "_locales/cue-strings.json"
     ],
     "icon": "./icon.png",
     "public": true,
