@@ -2,5 +2,5 @@
 //% advanced=true
 namespace CueAdvanced
 {
-  let onButtonPressed_DELIM : string = "^";
+  //let onButtonPressed_DELIM : string = "^";
 }

@@ -6,10 +6,30 @@ enum Buttons
     HEAD_BACK
 }
 
+
 //% weight=100 color=#0fbc11 icon=""
 //% advanced=true
 namespace CueAdvanced {
 
+	// export interface dictionary {
+	// 	[id : string] : () => void;
+	// }
+
+
+ //	let eventKeys : string[] = ["bn"] ///: { [func_id : string] : Action } = {};
+	let event_DELIM : string = "*";
+	let parser : () => void =
+		function Parser() {
+
+			let func_id : string = serial.readUntil("|")
+
+			// Run the function if it exists
+			// if (func_id in events) {
+				// events[func_id];
+				// eval(events[func_id]);
+				events[func_id];
+			// }
+		};
 
 
 	// let DELIM : string = "*";
@@ -33,19 +53,34 @@ namespace CueAdvanced {
      * Check if Cue button is pressed
      * @param component
      */
-    //% block="On| button %button| pressed"
-    export function OnButtonPressed(button: Buttons, body: () => void) : void {
-
-				let after : string = "After\n"
-				let onButtonPressed_DELIM : string = "^";
+    //% block="On| button main| pressed"
+    export function OnButtonPressed( body: () => void) : void {
 
         let buttonList : string[] = ["m","1", "2", "3"];
-				let toSend : string = "Interrupt btn" + buttonList[button] + "\n"
-				serial.writeString(toSend);
-			 	serial.onDataReceived(onButtonPressed_DELIM, body)
-				serial.writeString(after)
+				//let toSend : string = "Interrupt btn" + buttonList[button] + "\n"
+
+				events["btnm"] = body
+
+				serial.onDataReceived(event_DELIM, parser)
     }
 
+
+
+
+
+		/**
+		 * Check if Cue sound is playing
+		 * @param component
+		 */
+		//% block="On Sound Playing"
+		export function OnSoundPlaying(body: () => void) : void {
+				let onSoundPlaying_DELIM : string = "*";
+
+				let toSend : string = "Interrupt spk\n"
+				serial.writeString(toSend);
+				serial.onDataReceived(onSoundPlaying_DELIM, body)
+			// serial.writeString(after)
+		}
 		/**
      * Check if Cue animation is on
      * @param component
@@ -60,19 +95,7 @@ namespace CueAdvanced {
 			// serial.writeString(after)
     }
 
-		/**
-		 * Check if Cue sound is playing
-		 * @param component
-		 */
-		//% block="On Sound Playing"
-		export function OnSoundPlaying(body: () => void) : void {
-				let onSoundPlaying_DELIM : string = "*";
 
-				let toSend : string = "Interrupt spk\n"
-				serial.writeString(toSend);
-			 	serial.onDataReceived(onSoundPlaying_DELIM, body)
-			// serial.writeString(after)
-		}
 
 
 

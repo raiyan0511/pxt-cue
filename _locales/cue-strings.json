@@ -1,6 +1,6 @@
 {
   "CueAdvanced.OnAnimationPlaying|block": "On Face Animation Playing",
-  "CueAdvanced.OnButtonPressed|block": "On| button %button| pressed",
+  "CueAdvanced.OnButtonPressed|block": "On| button main| pressed",
   "CueAdvanced.OnSoundPlaying|block": "On Sound Playing",
   "CueAdvanced|block": "CueAdvanced",
   "cue.DoPose|block": "do pose|x %x|y %y|degrees %degrees|time %time",
