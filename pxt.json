@@ -11,9 +11,10 @@
         "cue_advanced.ts",
         "cue_interrupts.ts",
         "_locales/cue-jsdoc-strings.json",
-        "_locales/cue-strings.json"
+        "_locales/cue-strings.json",
+        "icon.png"
     ],
-    "icon": "icon.png",
+    "icon": "./icon.png",
     "public": true,
     "dependencies": {
         "core": "file:../core"
