@@ -4,12 +4,10 @@
     "files": [
         "delims.ts",
         "README.md",
-        "cue_basic_commands.ts",
-        "cue_more_commands.ts",
-        "cue_basic_sensors.ts",
-        "cue_more_sensors.ts",
+        "cue_commands.ts",
         "cue_advanced.ts",
-        "cue_interrupts.ts",
+        "cue_sensors.ts",
+        "cue_events.ts",
         "_locales/cue-jsdoc-strings.json",
         "_locales/cue-strings.json"
     ],

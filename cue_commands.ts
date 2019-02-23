@@ -32,7 +32,7 @@ enum CueDirectionHorizontal{
 
 enum CueDirectionVertical{
     UP,
-    DOWN, 
+    DOWN,
     LEVEL
 }
 
@@ -76,7 +76,7 @@ namespace cue {
 
     /**
      * Turn counter-clockwise the specified degrees at specified speed(cm/s) and then stop.
-     * @param degrees counter clockwise angle to turn 
+     * @param degrees counter clockwise angle to turn
      * @param speed in cm/s
      */
     //% block="do left turn|%degrees|degrees at speed %speed| cm/s"
@@ -90,7 +90,7 @@ namespace cue {
 
     /**
      * Turn clockwise the specified degrees at specified speed(cm/s) and then stop.
-     * @param degrees clockwise angle to turn 
+     * @param degrees clockwise angle to turn
      * @param speed in cm/s
      */
     //% block="do right turn|%degrees|degrees at speed %speed| cm/s"
@@ -125,7 +125,7 @@ namespace cue {
     }
 
     /**
-     * Make cue look in a direction 
+     * Make cue look in a direction
      * @param d direction to look in, one of (LEFT, RIGHT, UP, DOWN)
      */
     //% block="look |horizontal %d_h| and |vertical %d_v"
@@ -134,7 +134,7 @@ namespace cue {
         let pan_angle_list: number[] = [-90, 90, 0]
         // up, down, level
         let tilt_angle_list: number[] = [45, -45, 0]
-        SetHeadPanAndTilt(pan_angle_list[d_h], tilt_angle_list[d_v]);
+        CueAdvanced.SetHeadPanAndTilt(pan_angle_list[d_h], tilt_angle_list[d_v]);
     }
 
     /**
@@ -149,14 +149,14 @@ namespace cue {
 
     /**
      * Set color on LEDs in cue or turn them off
-     * @param led 
+     * @param led
      * @param color
      */
     //% block="set|LED in %led|to color %color"
     export function SetLEDColor(led: CueLEDPosition, color: CueLEDColor): void {
         // ears front, ears left, ears right, front, top, all
         let led_list: string[] = ["ef", "el", "er", "f", "t", "a"];
-        
+
         // black, red, green, blue, white
         let r_list: string[] = ["0", "1", "0", "0", "1"];
         let g_list: string[] = ["0", "0", "1", "0", "1"];
@@ -179,7 +179,7 @@ namespace cue {
 
     /**
      * Set cue's facial expression
-     * @param expression 
+     * @param expression
      */
     //% block="set facial expression |to %expression"
     export function ShowExpression(expression: CueExpression): void {
@@ -188,6 +188,5 @@ namespace cue {
         let toSend: string = ("se " + expression_list[expression] + " 1" + "\n");
         serial.writeString(toSend);
     }
-
 
 }
