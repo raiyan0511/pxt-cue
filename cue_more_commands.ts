@@ -1,4 +1,5 @@
 //% weight=100 color=#0fbc11 icon=""
+//%advanced = true
 namespace cue {
 
    	/**
@@ -44,7 +45,7 @@ namespace cue {
      * Control Cue's tilt (vertical direction)
      * @param angle vertical angle in degrees (-45 to 45) e.g, 30
      */
-    //% block="set head tilt(vertical)|angle %angle| degrees" 
+    //% block="set head tilt(vertical)|angle %angle| degrees"
     //% angle.min=-45 angle.max=45
     //% angle.fieldOptions.precision=1
     //% advanced=true
@@ -88,8 +89,8 @@ namespace cue {
 
     /**
      * Set cue's 'pose' within the given time. Doesn't block execution.
-     * @param x 
-     * @param y 
+     * @param x
+     * @param y
      * @param degrees
      * @param time
      */

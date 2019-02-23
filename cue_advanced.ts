@@ -21,8 +21,7 @@ enum WheelDirections
 
 
 //% weight=100 color=#0fbc11 icon=""
-//% advanced=true
-namespace CueAdvanced {
+namespace CueEvents {
 
 	export interface dictionary {
 		[id : string] : () => void
@@ -172,7 +171,7 @@ namespace CueAdvanced {
 	 * Check if Cue detects an object is detected in front of Cue
 	 * @param component
 	 */
-	//% block="On object detected |wheelDirection %wheelDirection|"
+	//% block="On object detected |near %wheelDirection|"
 	export function OnCueObjectDetected(wheelDirection: WheelDirections, body: () => void) : void {
 		let wheelDirList : string[] = ["fl","fr", "r"];
 		let func_id : string = "tlt" + wheelDirList[wheelDirection]
