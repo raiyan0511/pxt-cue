@@ -131,9 +131,9 @@ namespace cue {
     //% block="look |horizontal %d_h| and |vertical %d_v"
     export function Look(d_h : CueDirectionHorizontal, d_v : CueDirectionVertical): void {
         // left, right, front
-        let pan_angle_list: number[] = [-90, 90, 0]
+        let pan_angle_list: number[] = [90, -90, 0]
         // up, down, level
-        let tilt_angle_list: number[] = [45, -45, 0]
+        let tilt_angle_list: number[] = [30, -15, 0]
         CueAdvanced.SetHeadPanAndTilt(pan_angle_list[d_h], tilt_angle_list[d_v]);
     }
 
