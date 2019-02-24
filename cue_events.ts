@@ -13,6 +13,11 @@ enum Directions
 	FRONT,
 	BACK
 }
+enum SpinDirections
+{
+	LEFT,
+	RIGHT
+}
 
 enum WheelDirections
 {
@@ -52,8 +57,8 @@ namespace CueEvents {
 		}
 
 
-	let events : Array<()=>void> = [dummy, dummy, dummy, dummy, dummy, dummy, dummy]
-		let event_keys : Array<string> = ["bs","bs","bs","bs", "bs", "bs", "bs"]
+	let events : Array<()=>void> = [dummy, dummy, dummy, dummy, dummy, dummy, dummy, dummy, dummy, dummy, dummy, dummy, dummy, dummy, dummy, dummy, dummy, dummy, dummy, dummy, dummy]
+		let event_keys : Array<string> = ["bs","bs","bs","bs", "bs", "bs", "bs", "bs","bs","bs","bs", "bs", "bs", "bs", "bs","bs","bs","bs", "bs", "bs", "bs"]
 		let num_events : number = 0
 		let MAX_NUM_EVENTS : number = 4
 
@@ -61,6 +66,7 @@ namespace CueEvents {
 
 		let parser : () => void =
 		function Parser() : void {
+
 			basic.pause(200)
 			let func_id : string = serial.readUntil("|")
 				// Run the function if it exists
@@ -98,9 +104,11 @@ namespace CueEvents {
 		let func_id : string = "btn" + buttonList[button]
 
 			// register interrupt with router
+
+
 			let toSend : string = "Interrupt " + func_id + "\n"
 			serial.writeString(toSend);
-		
+
 		// queue event in this script's parser
 		let success : boolean = queue_event(event_DELIM + func_id, body)
 
@@ -150,7 +158,7 @@ namespace CueEvents {
 	 * @param component
 	 */
 	//% block="On cue spinning | direction %direction|"
-	export function OnCueSpinning(direction: Directions, body: () => void) : void {
+	export function OnCueSpinning(direction: SpinDirections, body: () => void) : void {
 		let directionList : string[] = ["l","r"];
 		let func_id : string = "gyrz" + directionList[direction]
 
