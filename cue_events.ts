@@ -9,7 +9,9 @@ enum Buttons
 enum Directions
 {
 	LEFT,
-	RIGHT
+	RIGHT,
+	FRONT,
+	BACK
 }
 
 enum WheelDirections
@@ -50,8 +52,8 @@ namespace CueEvents {
 		}
 
 
-	let events : Array<()=>void> = [dummy, dummy, dummy, dummy]
-		let event_keys : Array<string> = ["bs","bs","bs","bs"]
+	let events : Array<()=>void> = [dummy, dummy, dummy, dummy, dummy, dummy, dummy]
+		let event_keys : Array<string> = ["bs","bs","bs","bs", "bs", "bs", "bs"]
 		let num_events : number = 0
 		let MAX_NUM_EVENTS : number = 4
 
@@ -150,7 +152,7 @@ namespace CueEvents {
 	//% block="On cue spinning | direction %direction|"
 	export function OnCueSpinning(direction: Directions, body: () => void) : void {
 		let directionList : string[] = ["l","r"];
-		let func_id : string = "spn" + directionList[direction]
+		let func_id : string = "gyrz" + directionList[direction]
 
 			// register interrupt with router
 			let toSend : string = "Interrupt " + func_id + "\n"
@@ -168,7 +170,7 @@ namespace CueEvents {
 	 */
 	//% block="On cue tilted | direction %direction|"
 	export function OnCueTilted(direction: Directions, body: () => void) : void {
-		let directionList : string[] = ["l","r"];
+		let directionList : string[] = ["l","r", "f", "b"];
 		let func_id : string = "tlt" + directionList[direction]
 
 			// register interrupt with router
@@ -188,7 +190,7 @@ namespace CueEvents {
 	//% block="On object detected |near %wheelDirection|"
 	export function OnCueObjectDetected(wheelDirection: WheelDirections, body: () => void) : void {
 		let wheelDirList : string[] = ["fl","fr", "r"];
-		let func_id : string = "tlt" + wheelDirList[wheelDirection]
+		let func_id : string = "objd" + wheelDirList[wheelDirection]
 
 			// register interrupt with router
 			let toSend : string = "Interrupt " + func_id + "\n"
