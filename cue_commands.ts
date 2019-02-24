@@ -69,6 +69,8 @@ namespace cue {
      * @param speed in cm/s
      */
     //% block="move forward|distance %distance|cm at speed %speed| cm/s"
+    //% speed.min=1 speed.max=35
+    //% speed.fieldOptions.precision=1
     export function moveForward(distance: number, speed: number): void {
         // Add code here
         let toSend: string = ("bdf " + distance.toString() +" " + speed.toString() + "\n");
@@ -83,6 +85,8 @@ namespace cue {
     //% block="do left turn|%degrees|degrees at speed %speed| cm/s"
     //% degrees.min=1 degrees.max=180
     //% degrees.fieldOptions.precision=1
+    //% speed.min=1 speed.max=35
+    //% speed.fieldOptions.precision=1
     export function LeftTurn(degrees: number, speed: number): void {
         // Add code here
         let toSend: string = ("bdt " + degrees.toString() +" "+ speed.toString() + "\n");
@@ -97,6 +101,8 @@ namespace cue {
     //% block="do right turn|%degrees|degrees at speed %speed| cm/s"
     //% degrees.min=1 degrees.max=180
     //% degrees.fieldOptions.precision=1
+    //% speed.min=1 speed.max=35
+    //% speed.fieldOptions.precision=1
     export function RightTurn(degrees: number, speed: number): void {
         // Add code here
         let toSend: string = ("bdt -" + degrees.toString() +" "+ speed.toString() + "\n");
@@ -109,6 +115,10 @@ namespace cue {
      * @param right in cm/s
      */
     //% block="set wheel speed|left %left|cm/s right %right|cm/s"
+    //% left.min=1 left.max=35
+    //% left.fieldOptions.precision=1
+    //% right.min=1 right.max=35
+    //% right.fieldOptions.precision=1
     export function SetWheelSpeeds(left: number, right: number): void {
         // Add code here
         let toSend: string = ("bsws " + left.toString() + " " + right.toString() + "\n");
