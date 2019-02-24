@@ -21,9 +21,8 @@ enum SpinDirections
 
 enum WheelDirections
 {
-	FRONT_LEFT_WHEEL,
-	FRON_RIGHT_WHEEL,
-	REAR_WHEEL
+	FRONT,
+	REAR
 }
 
 enum X_Directions
@@ -192,12 +191,12 @@ namespace CueEvents {
 	}
 
 	/**
-	 * Check if Cue detects an object near one of its wheels
+	 * Check if Cue detects an object that is within 20 cm from either the front or the back
 	 * @param component
 	 */
 	//% block="On object detected |near %wheelDirection|"
 	export function OnCueObjectDetected(wheelDirection: WheelDirections, body: () => void) : void {
-		let wheelDirList : string[] = ["fl","fr", "r"];
+		let wheelDirList : string[] = ["f", "r"];
 		let func_id : string = "objd" + wheelDirList[wheelDirection]
 
 			// register interrupt with router
