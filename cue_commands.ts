@@ -62,6 +62,7 @@ namespace cue {
         SerialPin.USB_RX,
         BaudRate.BaudRate115200
     )
+    serial.writeString("Reset\n");
     /**
      * Drive forward the specified distance(cm) at specified speed(cm/s) and then stop.
      * @param distance in cm

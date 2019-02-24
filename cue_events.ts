@@ -59,7 +59,7 @@ namespace CueEvents {
 	let events : Array<()=>void> = [dummy, dummy, dummy, dummy, dummy, dummy, dummy, dummy, dummy, dummy, dummy, dummy, dummy, dummy, dummy, dummy, dummy, dummy, dummy, dummy, dummy]
 		let event_keys : Array<string> = ["bs","bs","bs","bs", "bs", "bs", "bs", "bs","bs","bs","bs", "bs", "bs", "bs", "bs","bs","bs","bs", "bs", "bs", "bs"]
 		let num_events : number = 0
-		let MAX_NUM_EVENTS : number = 4
+		let MAX_NUM_EVENTS : number = 21
 
 		let event_DELIM : string = "*"
 
