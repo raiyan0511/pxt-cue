@@ -11,7 +11,7 @@
         "_locales/cue-jsdoc-strings.json",
         "_locales/cue-strings.json"
     ],
-    "icon": "./icon.png",
+    "icon": "icon.png",
     "public": true,
     "dependencies": {
         "core": "file:../core"
