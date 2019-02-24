@@ -61,7 +61,7 @@ namespace CueEvents {
 
 		let parser : () => void =
 		function Parser() : void {
-
+			basic.pause(200)
 			let func_id : string = serial.readUntil("|")
 				// Run the function if it exists
 				for (let i :number = 0; i < num_events; i++) {
@@ -100,7 +100,7 @@ namespace CueEvents {
 			// register interrupt with router
 			let toSend : string = "Interrupt " + func_id + "\n"
 			serial.writeString(toSend);
-
+		
 		// queue event in this script's parser
 		let success : boolean = queue_event(event_DELIM + func_id, body)
 
