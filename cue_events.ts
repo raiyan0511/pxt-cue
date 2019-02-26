@@ -57,6 +57,7 @@ namespace CueEvents {
 
 
 	let events : Array<()=>void> = [dummy, dummy, dummy, dummy, dummy, dummy, dummy, dummy, dummy, dummy, dummy, dummy, dummy, dummy, dummy, dummy, dummy, dummy, dummy, dummy, dummy]
+		// Btw bs stands for Bhushan Suwal - One of our lovely developers! (◡‿◡✿)
 		let event_keys : Array<string> = ["bs","bs","bs","bs", "bs", "bs", "bs", "bs","bs","bs","bs", "bs", "bs", "bs", "bs","bs","bs","bs", "bs", "bs", "bs"]
 		let num_events : number = 0
 		let MAX_NUM_EVENTS : number = 21
