@@ -66,10 +66,10 @@ namespace cue {
     ///////////////////////
 
 
-    let timeFwd :number = input.runningTime()
-    let timeLftTrn: number = input.runningTime()
-    let timeRghtTrn: number = input.runningTime()
-    let timePose: number = input.runningTime()
+    let timeFwd :number = -99
+    let timeLftTrn: number = -99
+    let timeRghtTrn: number = -99
+
     /**
      * Drive forward the specified distance(cm) at specified speed(cm/s) and then stop.
      * @param distance in cm
@@ -82,7 +82,7 @@ namespace cue {
         // Add code here
         if( speed > 0)
         {
-          let time :number = (distance / speed) / 1000 // Converting to milliseconds
+          let time :number = (distance / speed) * 1000 // Converting to milliseconds
           let currTime : number = input.runningTime()
 
           // Send the string only after execution time has elapsed
@@ -109,7 +109,7 @@ namespace cue {
         // Add code here
         if( speed > 0)
         {
-          let time :number = (degrees / speed) / 1000 // Converting to milliseconds
+          let time :number = (degrees / speed) * 1000 // Converting to milliseconds
           let currTime : number = input.runningTime()
 
           // Send the string only after execution time has elapsed
@@ -120,11 +120,6 @@ namespace cue {
             timeLftTrn = currTime
           }
         }
-
-
-
-
-
 
     }
 
@@ -140,8 +135,20 @@ namespace cue {
     //% speed.fieldOptions.precision=1
     export function RightTurn(degrees: number, speed: number): void {
         // Add code here
-        let toSend: string = ("bdt -" + degrees.toString() +" "+ speed.toString() + "\n");
-        serial.writeString(toSend);
+        if( speed > 0)
+        {
+          let time :number = (degrees / speed) * 1000 // Converting to milliseconds
+          let currTime : number = input.runningTime()
+
+          // Send the string only after execution time has elapsed
+          if ((currTime -  timeRghtTrn) > time)
+          {
+            let toSend: string = ("bdt -" + degrees.toString() +" "+ speed.toString() + "\n");
+            serial.writeString(toSend);
+            timeRghtTrn = currTime
+          }
+        }
+
     }
 
     /**

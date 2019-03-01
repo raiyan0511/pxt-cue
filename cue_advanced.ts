@@ -2,6 +2,8 @@
 //%advanced = true
 namespace CueAdvanced {
 
+  let timePose: number = -99 //input.runningTime()
+
    	/**
      * Set robot's speed - keeps moving. Add a stop in program when you want to stop the robot. Less accurate than Set Wheel Speeds
      * @param left in cm/s
@@ -77,8 +79,18 @@ namespace CueAdvanced {
     //% block="do pose|x %x|y %y|degrees %degrees|time %time"
     export function DoPose(x: number, y: number, degrees: number, time: number): void {
         // Add code here
-        let toSend: string = ("bdp " + x.toString() + " " + y.toString() + " " + degrees.toString() + " " + time.toString() + "\n");
-        serial.writeString(toSend);
+
+          let timeSec :number = time * 1000 // Converting to milliseconds
+          let currTime : number = input.runningTime()
+
+          // Send the string only after execution time has elapsed
+          if ((currTime -  timePose) > timesec)
+          {
+            let toSend: string = ("bdp " + x.toString() + " " + y.toString() + " " + degrees.toString() + " " + time.toString() + "\n");
+            serial.writeString(toSend);
+            timePose = currTime
+          }
+
     }
 
     /**
