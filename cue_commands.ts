@@ -70,10 +70,6 @@ namespace cue {
     let timeLftTrn: number = -99
     let timeRghtTrn: number = -99
 
-    //% block="dummy %d"
-    export function dddddd(a:number) : void {
-
-    }
     /**
      * Drive forward the specified distance(cm) at specified speed(cm/s) and then stop.
      * @param distance in cm
