@@ -84,7 +84,7 @@ namespace CueAdvanced {
           let currTime : number = input.runningTime()
 
           // Send the string only after execution time has elapsed
-          if ((currTime -  timePose) > timesec)
+          if ((currTime -  timePose) > timeSec)
           {
             let toSend: string = ("bdp " + x.toString() + " " + y.toString() + " " + degrees.toString() + " " + time.toString() + "\n");
             serial.writeString(toSend);
