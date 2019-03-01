@@ -2,7 +2,7 @@
 //%advanced = true
 namespace CueAdvanced {
 
-  let timePose: number = -99 //input.runningTime()
+  let timePose: number = -99 * 1000 //input.runningTime()
 
    	/**
      * Set robot's speed - keeps moving. Add a stop in program when you want to stop the robot. Less accurate than Set Wheel Speeds
