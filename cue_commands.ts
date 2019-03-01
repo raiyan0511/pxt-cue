@@ -66,10 +66,14 @@ namespace cue {
     ///////////////////////
 
 
-    let timeFwd :number = -90
-    let timeLftTrn: number = -90
-    let timeRghtTrn: number = -90
+    let timeFwd :number = -99
+    let timeLftTrn: number = -99
+    let timeRghtTrn: number = -99
 
+    //% block="dummy %d"
+    export function dddddd(a:number) : void {
+
+    }
     /**
      * Drive forward the specified distance(cm) at specified speed(cm/s) and then stop.
      * @param distance in cm
