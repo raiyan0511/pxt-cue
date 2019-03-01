@@ -52,7 +52,7 @@ enum CueLEDColor{
     BLUE,
     WHITE
 }
-
+//////
 
 //% weight=100 color=#0fbc11 icon=""
 namespace cue {
@@ -63,6 +63,13 @@ namespace cue {
         BaudRate.BaudRate115200
     )
     serial.writeString("Reset\n");
+    ///////////////////////
+
+
+    let timeFwd :number = input.runningTime()
+    let timeLftTrn: number = input.runningTime()
+    let timeRghtTrn: number = input.runningTime()
+    let timePose: number = input.runningTime()
     /**
      * Drive forward the specified distance(cm) at specified speed(cm/s) and then stop.
      * @param distance in cm
@@ -73,8 +80,19 @@ namespace cue {
     //% speed.fieldOptions.precision=1
     export function moveForward(distance: number, speed: number): void {
         // Add code here
-        let toSend: string = ("bdf " + distance.toString() +" " + speed.toString() + "\n");
-        serial.writeString(toSend);
+        if( speed > 0)
+        {
+          let time :number = (distance / speed) / 1000 // Converting to milliseconds
+          let currTime : number = input.runningTime()
+
+          // Send the string only after execution time has elapsed
+          if ((currTime -  timeFwd) > time)
+          {
+            let toSend: string = ("bdf " + distance.toString() +" " + speed.toString() + "\n");
+            serial.writeString(toSend);
+            timeFwd = currTime
+          }
+        }
     }
 
     /**
@@ -89,8 +107,25 @@ namespace cue {
     //% speed.fieldOptions.precision=1
     export function LeftTurn(degrees: number, speed: number): void {
         // Add code here
-        let toSend: string = ("bdt " + degrees.toString() +" "+ speed.toString() + "\n");
-        serial.writeString(toSend);
+        if( speed > 0)
+        {
+          let time :number = (degrees / speed) / 1000 // Converting to milliseconds
+          let currTime : number = input.runningTime()
+
+          // Send the string only after execution time has elapsed
+          if ((currTime -  timeLftTrn) > time)
+          {
+            let toSend: string = ("bdt " + degrees.toString() +" "+ speed.toString() + "\n");
+            serial.writeString(toSend);
+            timeLftTrn = currTime
+          }
+        }
+
+
+
+
+
+
     }
 
     /**
