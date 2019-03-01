@@ -66,9 +66,9 @@ namespace cue {
     ///////////////////////
 
 
-    let timeFwd :number = 0
-    let timeLftTrn: number = 0
-    let timeRghtTrn: number = 0
+    let timeFwd :number = -90
+    let timeLftTrn: number = -90
+    let timeRghtTrn: number = -90
 
     /**
      * Drive forward the specified distance(cm) at specified speed(cm/s) and then stop.
