@@ -154,7 +154,7 @@ namespace cue {
           //  {
             let toSend: string = ("bdt -" + degrees.toString() +" "+ speed.toString() + "\n");
             serial.writeString(toSend);
-         //    // basic.pause(time)
+            basic.pause(time)
          //     timeRghtTrn = currTime
          //   }
          // }
