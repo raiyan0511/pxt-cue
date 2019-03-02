@@ -78,45 +78,13 @@ namespace CueAdvanced {
      */
     //% block="do pose|x %x|y %y|degrees %degrees|time %time"
     export function DoPose(x: number, y: number, degrees: number, time: number): void {
-        // Add code here
-
+      
           let timeSec :number = time * 1000 // Converting to milliseconds
-          // let currTime : number = input.runningTime()
-          //
-          // // Send the string only after execution time has elapsed
-          // if ((currTime -  timePose) > timeSec)
-          // {
             let toSend: string = ("bdp " + x.toString() + " " + y.toString() + " " + degrees.toString() + " " + time.toString() + "\n");
             serial.writeString(toSend);
             basic.pause(timeSec)
-          //   timePose = currTime
-          // }
+
 
     }
 
-    /**
-     * Set cue's 'pose' within the given time. Doesn't block execution.
-     * @param x
-     * @param y
-     * @param degrees
-     * @param time
-     */
-    //% block="set pose|x %x|y %y|degrees %degrees|time %time"
-    export function SetPose(x: number, y: number, degrees: number, time: number): void {
-        // Add code here
-        let toSend: string = ("bsp " + x.toString() + " " + y.toString() + " " + degrees.toString() + " " + time.toString() + "\n");
-        serial.writeString(toSend);
-    }
-
-    /**
-     * Stage ping
-     * @param id
-     */
-/*
-    //% block
-    export function StagePing(id: number): void {
-        let toSend: string = ("sp " + id.toString() + "\n");
-        serial.writeString(toSend);
-    }
-*/
 }
