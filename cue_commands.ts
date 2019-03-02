@@ -117,6 +117,8 @@ namespace cue {
           let time :number = (degrees / speed) * 1000 // Converting to milliseconds
             let toSend: string = ("bdt -" + degrees.toString() +" "+ speed.toString() + "\n");
             serial.writeString(toSend);
+            basic.pause(time)
+
 
     }
 
