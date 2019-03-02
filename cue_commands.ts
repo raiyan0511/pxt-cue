@@ -108,7 +108,7 @@ namespace cue {
      * @param degrees counter clockwise angle to turn
      * @param speed in cm/s
      */
-    //% block="do left turn|%degrees|degrees at speed %speed| cm/s"
+    //% block="do left turn|%degrees|degrees at speed %speed| degrees/second"
     //% degrees.min=1 degrees.max=180
     //% degrees.fieldOptions.precision=1
     //% speed.min=1 speed.max=35
@@ -137,7 +137,7 @@ namespace cue {
      * @param degrees clockwise angle to turn
      * @param speed in cm/s
      */
-    //% block="do right turn|%degrees|degrees at speed %speed| cm/s"
+    //% block="do right turn|%degrees|degrees at speed %speed| degrees/second"
     //% degrees.min=1 degrees.max=180
     //% degrees.fieldOptions.precision=1
     //% speed.min=1 speed.max=35
