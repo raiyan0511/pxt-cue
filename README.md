@@ -6,7 +6,7 @@
 ## Cue
 3.	Download the **router** directory located in the Cue repository.
 
-4. In a new [python virtual environment](https://docs.python-guide.org/dev/virtualenvs/) run ``` pip2 install -r requirements.txt '''
+4. In a new [python virtual environment](https://docs.python-guide.org/dev/virtualenvs/) run ``` pip2 install -r requirements.txt```
 
 5.	Run ```python2 router.py``` from the terminal. (This script connects the host machine to Cue to create a communication channel between the Cue and the Micro:bit)
   *router.py, once running, does not need to be terminated if a new program is being implemented. Quit router.py only when no    more programs are being implemented.*
