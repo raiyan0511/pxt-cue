@@ -46,9 +46,6 @@ namespace CueEvents {
 	export interface dictionary {
 		[id : string] : () => void
 	}
-	// let events : dictionary = {};
-
-	//let events : Object = Object.create(null);
 
 	let dummy : () => void =
 		function Dummy() : void {
@@ -71,13 +68,7 @@ namespace CueEvents {
 			let func_id : string = serial.readUntil("|")
 				// Run the function if it exists
 				for (let i :number = 0; i < num_events; i++) {
-					// let checking_fn : string = "checking " + func_id +
-					// 							" with " + event_keys[i] +
-					// 							 "\n"
-					// serial.writeString(checking_fn)
 					if (func_id == event_keys[i]) {
-						// let calling_fn : string = "sending " + func_id + "\n"
-						// serial.writeString(calling_fn)
 						events[i]()
 					}
 				}
