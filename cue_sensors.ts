@@ -70,19 +70,15 @@ namespace cue {
     //%advanced = true
     export function IsCueFacing(direction: CueHeadDirectionAll): boolean {
         // left, right, forward, up, down, level
-        let pan_angle_list : number[] = [-90, 90, 0, 999, 999, 999];
-        let tilt_angle_list : number[] = [999, 999, 999, 45, -45, 0]
-
         let pan_angle : number = ReadHeadPan()
         let tilt_angle : number = ReadHeadTilt()
-
-        if (pan_angle_list[direction] == pan_angle ||
-            tilt_angle_list[direction] == tilt_angle) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        let logics : boolean[] = [
+            pan_angle > 45, pan_angle < -45,    // left and righht
+            pan_angle > -2 && pan_angle < 2,    // forward
+            tilt_angle > 15, tilt_angle < -5,   // up and down
+            tilt angle > -2 && tilt_angle < 2   // level
+        ]
+        return logics[direction]
     }
 
 
