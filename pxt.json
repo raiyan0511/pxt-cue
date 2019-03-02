@@ -2,7 +2,6 @@
     "name": "cue",
     "description": "Cue Robot extensions",
     "files": [
-        "delims.ts",
         "README.md",
         "cue_commands.ts",
         "cue_advanced.ts",
