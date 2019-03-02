@@ -69,6 +69,13 @@ namespace cue {
     let timeFwd :number = -99 * 1000
     let timeLftTrn: number = -99 * 1000
     let timeRghtTrn: number = -99 * 1000
+    ////////
+    let timeToStall: number = 0
+
+    function addStallTime(time: number)
+    {
+      timeToStall = timeToStall + time;
+    }
 
     /**
      * Drive forward the specified distance(cm) at specified speed(cm/s) and then stop.
@@ -80,20 +87,20 @@ namespace cue {
     //% speed.fieldOptions.precision=1
     export function moveForward(distance: number, speed: number): void {
         // Add code here
-        // if( speed > 0)
-        // {
+         if( speed > 0)
+         {
           let time :number = (distance / speed) * 1000 // Converting to milliseconds
-          // let currTime : number = input.runningTime()
-          //
-          // // Send the string only after execution time has elapsed
-          // if ((currTime -  timeFwd) > time)
-          // {
+          let currTime : number = input.runningTime()
+          addStallTime(time)
+           // Send the string only after execution time has elapsed
+           if ((currTime -  timeFwd) > timeToStall)
+           {
             let toSend: string = ("bdf " + distance.toString() +" " + speed.toString() + "\n");
             serial.writeString(toSend);
-            basic.pause(time)
-        //     timeFwd = currTime
-        //   }
-        // }
+            //basic.pause(time)
+           timeFwd = currTime
+           }
+         }
     }
 
     /**
@@ -108,20 +115,20 @@ namespace cue {
     //% speed.fieldOptions.precision=1
     export function LeftTurn(degrees: number, speed: number): void {
         // Add code here
-        // if( speed > 0)
-        // {
+        if( speed > 0)
+         {
           let time :number = (degrees / speed) * 1000 // Converting to milliseconds
-          // let currTime : number = input.runningTime()
-          //
-          // // Send the string only after execution time has elapsed
-          // if ((currTime -  timeLftTrn) > time)
-          // {
+          let currTime : number = input.runningTime()
+          addStallTime(time)
+          // Send the string only after execution time has elapsed
+          if ((currTime -  timeLftTrn) > timeToStall)
+          {
             let toSend: string = ("bdt " + degrees.toString() +" "+ speed.toString() + "\n");
             serial.writeString(toSend);
-            basic.pause(time)
-        //     timeLftTrn = currTime
-        //   }
-        // }
+            // basic.pause(time)
+             timeLftTrn = currTime
+           }
+         }
 
     }
 
@@ -137,20 +144,20 @@ namespace cue {
     //% speed.fieldOptions.precision=1
     export function RightTurn(degrees: number, speed: number): void {
         // // Add code here
-        // if( speed > 0)
-        // {
+         if( speed > 0)
+         {
           let time :number = (degrees / speed) * 1000 // Converting to milliseconds
-          // let currTime : number = input.runningTime()
-          //
-          // // Send the string only after execution time has elapsed
-          // if ((currTime -  timeRghtTrn) > time)
-          // {
+          let currTime : number = input.runningTime()
+          addStallTime(time)
+           // Send the string only after execution time has elapsed
+           if ((currTime -  timeRghtTrn) > timeToStall)
+           {
             let toSend: string = ("bdt -" + degrees.toString() +" "+ speed.toString() + "\n");
             serial.writeString(toSend);
-            basic.pause(time)
-        //     timeRghtTrn = currTime
-        //   }
-        // }
+            // basic.pause(time)
+             timeRghtTrn = currTime
+           }
+         }
 
     }
 
