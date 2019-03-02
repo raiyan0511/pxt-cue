@@ -66,6 +66,7 @@ namespace cue {
      * @param direction
      * @return isFacing
      */
+    /*
     //% block="head facing |all the way %direction"
     //%advanced = true
     export function IsCueFacing(direction: CueHeadDirectionAll): boolean {
@@ -74,13 +75,13 @@ namespace cue {
         let tilt_angle : number = ReadHeadTilt()
         let logics : boolean[] = [
             pan_angle > 45, pan_angle < -45,    // left and righht
-            pan_angle > -2 && pan_angle < 2,    // forward
+            pan_angle > -2 & pan_angle < 2,    // forward
             tilt_angle > 15, tilt_angle < -5,   // up and down
-            tilt angle > -2 && tilt_angle < 2   // level
+            tilt angle > -2 & tilt_angle < 2   // level
         ]
         return logics[direction]
     }
-
+    */
 
     /**
      * Is sound playing on cue?
