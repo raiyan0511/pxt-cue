@@ -83,8 +83,8 @@ class Router(object):
         """
         self._greetings = Greetings()
         self._functions = Functions(robot)
-        self._properties = Properties(robot)
         self._functions.dict['reset']()
+        self._properties = Properties(robot)
 
         print("READY TO ROLL ...")
 
