@@ -57,8 +57,8 @@ class Properties:
 
             'spk' : robot.sensors.speaker.playing,
 
-            'dtvl' : robot.sensors.wheel_left,
-            'dtvr' : robot.sensors.wheel_right,
+            'dtvl' : robot.sensors.wheel_left.distance,
+            'dtvr' : robot.sensors.wheel_right.distance,
 
             # other
 
@@ -164,7 +164,9 @@ class Functions:
         self._robot.commands.head.stage_pan_tilt_angle(0, 0)
         self._robot.commands.RGB.stage_all(0, 0, 0)
         self._dict['sa']("SNCHINITSE")
-
+        self._robot.sensors.wheel_left.tare()
+        self._robot.sensors.wheel_right.tare()
+        
 
     def move_forward(self, distance, speed):
         if speed == 0: 
