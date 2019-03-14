@@ -244,8 +244,9 @@ namespace cue {
           . # . # .
           `)
           let toSend: string = ("sa SNCH" + "EHHYIKES" + "\n");
-          serial.writeString(toSend);
           basic.pause(200);
+          serial.writeString(toSend);
+
       }
       else if(dist < 20)
       {
@@ -257,8 +258,9 @@ namespace cue {
         # . . . #
         `)
         let toSend: string = ("sa SNCH" + "WHOACHYOD" + "\n");
-        serial.writeString(toSend);
         basic.pause(200);
+        serial.writeString(toSend);
+
       }
       else if(dist < 5)
       {
@@ -270,10 +272,17 @@ namespace cue {
         # . # . #
         `)
         let toSend: string = ("sa SNCH" + "OUCH" + "\n");
-        serial.writeString(toSend);
         basic.pause(200);
+        serial.writeString(toSend);
 
       }
+      basic.showLeds(`
+      . . . . .
+      . . . . .
+      . . . . .
+      . . . . .
+      . . . . .
+      `)
 
     }
 
