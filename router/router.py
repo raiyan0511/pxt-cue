@@ -159,7 +159,7 @@ class Router(object):
         else:
             retval = start + str(int(round(cue_response))) + delim
 
-        print("retval ", retval)
+        #print("retval ", retval)
         self._uart.write(retval)
 
     def greet_friend(self, robot):
