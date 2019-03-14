@@ -36,15 +36,15 @@ class Router(object):
         This means only call the stage_foo() flavor of robot commands, and not the do_foo() versions.        """
         self._properties.update_robot(robot)
 
-        #print(  'obstacle (FRONT) : ', self._properties.dict['objdf'], 
+        #print(  'obstacle (FRONT) : ', self._properties.dict['objdf'],
         #        'obstacle (REAR) : ', self._properties.dict['objdr']
         #    )
-        
+
         #print('Spin gyrz : ', self._properties.dict['gyrz'])
-        
+
         #print('(L-R) z_xz: ', robot.sensors.accelerometer.degrees_z_xz())
         #print('(F-B) z_yz: ', robot.sensors.accelerometer.degrees_z_yz())
-        
+
         #print('pan: ', robot.sensors.head_pan.degrees)
         #print('tilt: ', robot.sensors.head_tilt.degrees)
         #print('head_level: ', self._properties.dict['hfdlv'])
@@ -65,7 +65,7 @@ class Router(object):
 
     def time_is_valid(self, event_id):
         curr_time = time.time()
-       
+
         if event_id not in self._event_history.keys():
             self._event_history[event_id] = curr_time
             return True
@@ -97,7 +97,7 @@ class Router(object):
         main_thread.start()
 
     def listener(self, robot):
-        
+
         while True:
             # if time.time() - last >= 60:
             #     last = time.time()
@@ -115,7 +115,7 @@ class Router(object):
                 fn_key = cmd_list[0]
                 args = hp.parse_args(cmd_list[1:])
                 # print('fn_key: ', fn_key)
-                # print('args: ', args)    
+                # print('args: ', args)
 
                 if fn_key in self._properties.dict.keys():
                     val = self._properties.dict[fn_key]
@@ -128,9 +128,9 @@ class Router(object):
                         todo[1]['time'] += time.time()
                         self._queued_commands.update(
                             {todo[0]: todo[1]}
-                        )                        
+                        )
 
-                elif fn_key == "Interrupt": 
+                elif fn_key == "Interrupt":
                     if len(args) > 0:
                         self._event_ids.append(args[0])
 
@@ -159,13 +159,13 @@ class Router(object):
         else:
             retval = start + str(int(round(cue_response))) + delim
 
-        #print("retval ", retval)
+        print("retval ", retval)
         self._uart.write(retval)
 
     def greet_friend(self, robot):
         if time.time() - self._last_greeting < 2 :
             return
-        else: 
+        else:
             self._last_greeting = time.time()
             random_key = random.choice(self._greetings.dict.keys())
             self._functions.dict['sa'](self._greetings.dict[random_key])

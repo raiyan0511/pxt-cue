@@ -276,13 +276,7 @@ namespace cue {
         serial.writeString(toSend);
 
       }
-      basic.showLeds(`
-      . . . . .
-      . . . . .
-      . . . . .
-      . . . . .
-      . . . . .
-      `)
+      basic.clearScreen()
 
     }
 
