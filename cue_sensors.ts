@@ -24,6 +24,7 @@ enum CueWheel{
 }
 
 enum CueDistanceDirection{
+    FRONT,
     FRONT_LEFT,
     FRONT_RIGHT,
     BACK
@@ -156,7 +157,7 @@ namespace cue {
     //% block="distance to obstacle |from %side| wheel"
     //%advanced = true
     export function ReadDistanceToObstacle(side: CueDistanceDirection): number {
-        let side_list : string[] = ["fl", "fr", "r"];
+        let side_list : string[] = ["f", "fl", "fr", "r"];
         let toSend: string = ("dst" + side_list[side] + "\n");
         basic.pause(200)
         serial.writeString(toSend);
