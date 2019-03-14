@@ -58,6 +58,7 @@ enum CueDir
   BACK
 }
 //////
+let RETVAL_END : string = "_";
 
 //% weight=100 color=#0fbc11 icon=""
 namespace cue {
