@@ -13,6 +13,11 @@ enum CueButton{
     HEAD_BACK
 }
 
+enum CoordinateAxes{
+    X,
+    Y
+}
+
 enum CueWheel{
     LEFT,
     RIGHT
@@ -122,6 +127,22 @@ namespace cue {
         else {
             return false;
         }
+    }
+    
+    /**
+     * Read distance travelled by individual wheels in cm
+     * @param wheel Left or right wheel on Cue
+     */
+    //% block="read position |along %d| direction"
+    //%advanced = true
+    export function ReadPosition(d: CoordinateAxes): number {
+        let axes_list : string[] = ["x", "y"];
+        let toSend: string = ("pose" + axes_list[d] + "\n");
+        serial.writeString(toSend);
+        basic.pause(200);
+
+        let dist : number = parseInt(serial.readUntil(RETVAL_END));
+        return dist;
     }
 
     /**
