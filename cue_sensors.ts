@@ -13,12 +13,18 @@ enum CueButton{
     HEAD_BACK
 }
 
+enum CoordinateAxes{
+    X,
+    Y
+}
+
 enum CueWheel{
     LEFT,
     RIGHT
 }
 
 enum CueDistanceDirection{
+    FRONT,
     FRONT_LEFT,
     FRONT_RIGHT,
     BACK
@@ -48,6 +54,7 @@ namespace cue {
     export function IsButtonPressed(button: CueButton): boolean {
         let button_list : string[] = ["m", "1", "2", "3"];
         let toSend: string = ("acc" + button_list[button] + "\n");
+        basic.pause(200)
         serial.writeString(toSend);
         basic.pause(200);
 
@@ -91,6 +98,7 @@ namespace cue {
     //%advanced = true
     export function IsSoundPlaying(): boolean {
         let toSend : string = ("spk\n");
+        basic.pause(200)
         serial.writeString(toSend);
         basic.pause(200)
 
@@ -112,6 +120,7 @@ namespace cue {
     //%advanced = true
     export function IsAnimationPlaying(): boolean {
         let toSend : string = ("ani\n");
+        basic.pause(200)
         serial.writeString(toSend);
         basic.pause(200)
 
@@ -123,6 +132,23 @@ namespace cue {
             return false;
         }
     }
+    
+    /**
+     * Read distance travelled by individual wheels in cm
+     * @param wheel Left or right wheel on Cue
+     */
+    //% block="read position |along %d| direction"
+    //%advanced = true
+    export function ReadPosition(d: CoordinateAxes): number {
+        let axes_list : string[] = ["x", "y"];
+        let toSend: string = ("pose" + axes_list[d] + "\n");
+        basic.pause(200)
+        serial.writeString(toSend);
+        basic.pause(200);
+
+        let dist : number = parseInt(serial.readUntil(RETVAL_END));
+        return dist;
+    }
 
     /**
      * Read distance to obstacle from wheel on cue
@@ -131,8 +157,9 @@ namespace cue {
     //% block="distance to obstacle |from %side| wheel"
     //%advanced = true
     export function ReadDistanceToObstacle(side: CueDistanceDirection): number {
-        let side_list : string[] = ["fl", "fr", "r"];
+        let side_list : string[] = ["f", "fl", "fr", "r"];
         let toSend: string = ("dst" + side_list[side] + "\n");
+        basic.pause(200)
         serial.writeString(toSend);
         basic.pause(200);
 
@@ -149,6 +176,7 @@ namespace cue {
     export function ReadDistanceTravelled(wheel: CueWheel): number {
         let wheel_list : string[] = ["l", "r"];
         let toSend: string = ("dtv" + wheel_list[wheel] + "\n");
+        basic.pause(200)
         serial.writeString(toSend);
         basic.pause(200);
 
@@ -165,6 +193,7 @@ namespace cue {
     export function ReadAcceleration(component: CueAcceleration): number {
         let component_list : string[] = ["m", "x", "y", "z"];
         let toSend: string = ("acc" + component_list[component] + "\n");
+        basic.pause(200)
         serial.writeString(toSend);
         basic.pause(200);
         let accn : number = parseInt(serial.readUntil(RETVAL_END));
@@ -180,6 +209,7 @@ namespace cue {
     export function ReadGyroscope(component: CueAcceleration): number {
         let component_list : string[] = ["m", "x", "y", "z"];
         let toSend: string = ("gyr" + component_list[component] + "\n");
+        basic.pause(200)
         serial.writeString(toSend);
         basic.pause(200);
         let accn : number = parseInt(serial.readUntil(RETVAL_END));
@@ -194,6 +224,7 @@ namespace cue {
     //% advanced=true
     export function ReadHeadPan(): number {
         let toSend: string = ("hp\n");
+        basic.pause(200)
         serial.writeString(toSend);
         basic.pause(200);
 
@@ -209,6 +240,7 @@ namespace cue {
     //% advanced=true
     export function ReadHeadTilt(): number {
         let toSend: string = ("ht\n");
+        basic.pause(200)
         serial.writeString(toSend);
         basic.pause(200);
 
