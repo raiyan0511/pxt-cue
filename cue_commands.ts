@@ -52,6 +52,11 @@ enum CueLEDColor{
     BLUE,
     WHITE
 }
+enum CueDir
+{
+  FRONT,
+  BACK
+}
 //////
 
 //% weight=100 color=#0fbc11 icon=""
@@ -211,6 +216,63 @@ namespace cue {
         //let brightness : number = 1
         let toSend: string = ("se " + expression_list[expression] + " 1" + "\n");
         serial.writeString(toSend);
+    }
+
+    /**
+     * Set an alert that displays on the microbit and Cue
+     * @param expression
+     */
+    //% block="|%direction collision alert"
+    export function displayAlert(direction: CueDir): void {
+      let expression_list: string[] = ["f", "r"]
+
+      basic.pause(200);
+      let toSend: string = ("dst"+ expression_list[direction] + "\n");
+      serial.writeString(toSend);
+      basic.pause(200);
+
+      let dist : number = parseInt(serial.readUntil(RETVAL_END));
+      if(dist > 20  && dist < 40)
+      {
+        basic.showLeds(`
+          . # . # .
+          . # . # .
+          . # . # .
+          . . . . .
+          . # . # .
+          `)
+          let toSend: string = ("sa SNCH" + "EHHYIKES" + "\n");
+          serial.writeString(toSend);
+          basic.pause(200);
+      }
+      else if(dist < 20)
+      {
+        basic.showLeds(`
+        # . . . #
+        . # . # .
+        . . # . .
+        . # . # .
+        # . . . #
+        `)
+        let toSend: string = ("sa SNCH" + "WHOACHYOD" + "\n");
+        serial.writeString(toSend);
+        basic.pause(200);
+      }
+      else if(dist < 5)
+      {
+        basic.showLeds(`
+        # . . . #
+        . # . # .
+        . . . . .
+        # # # # #
+        # . # . #
+        `)
+        let toSend: string = ("sa SNCH" + "OUCH" + "\n");
+        serial.writeString(toSend);
+        basic.pause(200);
+
+      }
+
     }
 
 }
