@@ -83,10 +83,14 @@ class Router(object):
         """
         self._greetings = Greetings()
         self._functions = Functions(robot)
+        # move the robot a bit to get access to sensor data
+        robot.commands.body.stage_wheel_speeds(5,5)
+        time.sleep(1)
         self._functions.dict['reset']()
         self._properties = Properties(robot)
 
         print("READY TO ROLL ...")
+
 
         main_thread = Thread(target=self.listener, args = (robot,))
         main_thread.start()

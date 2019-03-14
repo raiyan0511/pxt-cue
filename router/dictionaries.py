@@ -18,9 +18,9 @@ OBJ_DETECTION_THRESHOLD = 25
 class Properties:
     def __init__(self, robot):
         #self.acceleration_magnitude = 0
-        self.update_robot(robot)
+        self.update_robot(robot, FIRST_PASS = True)
 
-    def update_robot(self, robot):
+    def update_robot(self, robot, FIRST_PASS = False):
         self._robot = robot
         head_level =  (abs(robot.sensors.head_tilt.degrees) < PAN_TILT_NOISE 
                                 if robot.sensors.head_tilt.degrees is not None
@@ -28,6 +28,8 @@ class Properties:
         head_forward = (abs(robot.sensors.head_pan.degrees) < PAN_TILT_NOISE 
                                 if robot.sensors.head_pan.degrees is not None
                                 else True)
+        left_wheel_dist = 0 if FIRST_PASS else robot.sensors.wheel_left.distance
+        right_wheel_dist = 0 if FIRST_PASS else robot.sensors.wheel_right.distance
         self._dict = {
             # direct API calls
             'accx': robot.sensors.accelerometer.x, 
@@ -57,8 +59,8 @@ class Properties:
 
             'spk' : robot.sensors.speaker.playing,
 
-            'dtvl' : robot.sensors.wheel_left.distance,
-            'dtvr' : robot.sensors.wheel_right.distance,
+            'dtvl' : left_wheel_dist,
+            'dtvr' : right_wheel_dist,
 
             # other
 
@@ -160,12 +162,13 @@ class Functions:
         }
 
     def reset_robot(self):
+        self._robot.sensors.wheel_left.tare()
+        self._robot.sensors.wheel_right.tare()
         self._robot.commands.body.stage_stop()
         self._robot.commands.head.stage_pan_tilt_angle(0, 0)
         self._robot.commands.RGB.stage_all(0, 0, 0)
         self._dict['sa']("SNCHINITSE")
-        self._robot.sensors.wheel_left.tare()
-        self._robot.sensors.wheel_right.tare()
+        
         
 
     def move_forward(self, distance, speed):
