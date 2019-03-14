@@ -58,7 +58,7 @@ enum CueDir
   BACK
 }
 //////
-let RETVAL_END : string = "_";
+
 
 //% weight=100 color=#0fbc11 icon=""
 namespace cue {
@@ -70,6 +70,7 @@ namespace cue {
     )
     serial.writeString("Reset\n");
 
+    let RETVAL_END : string = "_";
 
     /**
      * Drive forward the specified distance(cm) at specified speed(cm/s) and then stop.
