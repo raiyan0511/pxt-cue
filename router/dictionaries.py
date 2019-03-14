@@ -13,7 +13,7 @@ PAN_TILT_NOISE = 2
 ACC_TILT_THRESHOLD = 5
 SPIN_THRESHOLD = 5
 
-OBJ_DETECTION_THRESHOLD = 25
+OBJ_DETECTION_THRESHOLD = 45
 
 class Properties:
     def __init__(self, robot):
@@ -45,7 +45,8 @@ class Properties:
             'btnm' : robot.sensors.button_main.pressed,
 
             'dstfl' : robot.sensors.distance_front_left_facing.distance_approximate,
-
+            'dstf' : min( robot.sensors.distance_front_left_facing.distance_approximate,
+                            robot.sensors.distance_front_right_facing.distance_approximate),
             'dstfr' : robot.sensors.distance_front_right_facing.distance_approximate,
 
             'dstr' : robot.sensors.distance_rear.distance_approximate,
@@ -63,7 +64,6 @@ class Properties:
             'dtvr' : right_wheel_dist,
 
             # other
-
             # head 
             'hfdlu': (  robot.sensors.head_pan.degrees > LEFT_PAN_ANGLE and
                         robot.sensors.head_tilt.degrees > UP_TILT_ANGLE ),
@@ -108,7 +108,11 @@ class Properties:
             'objdf' : (min( robot.sensors.distance_front_left_facing.distance_approximate,
                             robot.sensors.distance_front_right_facing.distance_approximate)
                         < OBJ_DETECTION_THRESHOLD ) ,
-            'objdr' : robot.sensors.distance_rear.distance_approximate < OBJ_DETECTION_THRESHOLD
+            'objdr' : robot.sensors.distance_rear.distance_approximate < OBJ_DETECTION_THRESHOLD,
+
+            # pose sensors
+            'posex': -1 * robot.sensors.pose.x,
+            'posey': -1 * robot.sensors.pose.y
         }
 
     @property
@@ -189,7 +193,7 @@ class Functions:
             speed = -speed 
 
         time = (degrees / speed) 
-        self._robot.commands.body.stage_pose(0, 0, degrees, time - 0.4)  # stops faster
+        self._robot.commands.body.stage_pose(0, 0, degrees, time - 0.5)  # stops faster
 
         return ['bss', {'args': (), 'time': time}]
 

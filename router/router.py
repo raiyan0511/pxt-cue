@@ -48,6 +48,7 @@ class Router(object):
         #print('pan: ', robot.sensors.head_pan.degrees)
         #print('tilt: ', robot.sensors.head_tilt.degrees)
         #print('head_level: ', self._properties.dict['hfdlv'])
+        #print('x : %d, y: %d' % (self._properties.dict['posex'], self._properties.dict['posey']))
         if ((robot.sensors.beacon.robot_type_left_raw is not None)
             and (robot.sensors.beacon.robot_type_right_raw is not None)):
             self.greet_friend(robot)
@@ -113,8 +114,8 @@ class Router(object):
             if len(cmd_list) > 0:
                 fn_key = cmd_list[0]
                 args = hp.parse_args(cmd_list[1:])
-                #print('fn_key: ', fn_key)
-                #print('args: ', args)    
+                # print('fn_key: ', fn_key)
+                # print('args: ', args)    
 
                 if fn_key in self._properties.dict.keys():
                     val = self._properties.dict[fn_key]
