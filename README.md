@@ -23,7 +23,7 @@
 
               https://github.com/vbett01/pxt-cue
 
-10.	Click on **cue**. This will add the Cue extension.
+10.	Click on **Cue**. This will add the Cue extension.
 
 11.	Create custom program using the Cue extension.
 
