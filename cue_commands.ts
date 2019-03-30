@@ -83,7 +83,7 @@ namespace cue {
 
 
     /**
-     * Drive forward the specified distance(cm) at specified speed(cm/s) and then stop.
+     * Drive forward the specified distance(cm) at at a speed of 5 cm/s then stop.
      * @param distance in cm
      * @param speed in cm/s
      */
@@ -93,7 +93,7 @@ namespace cue {
     export function moveForward( speed: CueSpeed): void {
           let distance :number = 5
           let speedArray: number[] = [10, 20, 30]
-          let time :number = (distance / speedArray[speed]) * 1000 // Converting to milliseconds
+          let time :number = ((distance* 1000) / speedArray[speed])  // Converting to milliseconds
           let toSend: string = ("bdf " + distance.toString() +" " + speedArray[speed].toString() + "\n");
             //let toSend: string = ("bdf " + " +" " + speedArray[speed].toString() + "\n");
             serial.writeString(toSend);
@@ -103,7 +103,7 @@ namespace cue {
 
 
     /**
-     * Drive forward the specified distance(cm) at specified speed(cm/s) and then stop.
+     * Drive back the specified distance(cm) at at a speed of 5 cm/s then stop.
      * @param distance in cm
      * @param speed in cm/s
      */
@@ -113,7 +113,7 @@ namespace cue {
     export function moveBack( speed: CueSpeed): void {
           let distance :number = 5
           let speedArray: number[] = [-10, -20, -30]
-          let time :number = (distance / speedArray[speed]) * 1000 * -1// Converting to milliseconds
+          let time :number = ((distance * 1000) / speedArray[speed]) * -1// Converting to milliseconds
           let toSend: string = ("bdf " + distance.toString() +" " + speedArray[speed].toString() + "\n");
             //let toSend: string = ("bdf " + " +" " + speedArray[speed].toString() + "\n");
             serial.writeString(toSend);
