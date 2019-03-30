@@ -83,7 +83,7 @@ namespace cue {
 
 
     /**
-     * Drive forward the specified distance(cm) at at a speed of 5 cm/s then stop.
+     * Drive forward 5 cm at the specified speed then stop.
      * @param distance in cm
      * @param speed in cm/s
      */
@@ -93,7 +93,7 @@ namespace cue {
     export function moveForward( speed: CueSpeed): void {
           let distance :number = 5
           let speedArray: number[] = [10, 20, 30]
-          let time :number = ((distance* 1000) / speedArray[speed])  // Converting to milliseconds
+          let time :number = ((distance * 1000) / speedArray[speed])  // Converting to milliseconds
           let toSend: string = ("bdf " + distance.toString() +" " + speedArray[speed].toString() + "\n");
             //let toSend: string = ("bdf " + " +" " + speedArray[speed].toString() + "\n");
             serial.writeString(toSend);
@@ -103,7 +103,7 @@ namespace cue {
 
 
     /**
-     * Drive back the specified distance(cm) at at a speed of 5 cm/s then stop.
+     * Drive back 5 cm at the specified speed then stop.
      * @param distance in cm
      * @param speed in cm/s
      */
@@ -122,7 +122,7 @@ namespace cue {
     }
 
     /**
-     * Turn counter-clockwise the specified degrees at specified speed(cm/s) and then stop.
+     * Turn 90 degrees left
      * @param degrees counter clockwise angle to turn
      * @param speed in cm/s
      */
@@ -143,7 +143,7 @@ namespace cue {
     }
 
     /**
-     * Turn counter-clockwise the specified degrees at specified speed(cm/s) and then stop.
+     * Turn 90 degrees right
      * @param degrees counter clockwise angle to turn
      * @param speed in cm/s
      */
