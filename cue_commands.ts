@@ -57,6 +57,14 @@ enum CueDir
   FRONT,
   BACK
 }
+
+enum CueSpeed
+{
+  SLOW,
+  MEDIUM,
+  FAST
+
+}
 //////
 
 
@@ -72,19 +80,42 @@ namespace cue {
 
     let RETVAL_END : string = "_";
 
+
+
     /**
      * Drive forward the specified distance(cm) at specified speed(cm/s) and then stop.
      * @param distance in cm
      * @param speed in cm/s
      */
-    //% block="move forward|distance %distance|cm at speed %speed| cm/s"
+    //% block="move forward|speed %speed|"
     //% speed.min=1 speed.max=35
     //% speed.fieldOptions.precision=1
-    export function moveForward(distance: number, speed: number): void {
+    export function moveForward( speed: CueSpeed): void {
+          let distance :number = 5
+          let speedArray: number[] = [10, 20, 30]
+          let time :number = (distance / speedArray[speed]) * 1000 // Converting to milliseconds
+          let toSend: string = ("bdf " + distance.toString() +" " + speedArray[speed].toString() + "\n");
+            //let toSend: string = ("bdf " + " +" " + speedArray[speed].toString() + "\n");
+            serial.writeString(toSend);
+            basic.pause(time)
 
-          let time :number = (distance / speed) * 1000 // Converting to milliseconds
+    }
 
-            let toSend: string = ("bdf " + distance.toString() +" " + speed.toString() + "\n");
+
+    /**
+     * Drive forward the specified distance(cm) at specified speed(cm/s) and then stop.
+     * @param distance in cm
+     * @param speed in cm/s
+     */
+    //% block="move back|speed %speed|"
+    //% speed.min=1 speed.max=35
+    //% speed.fieldOptions.precision=1
+    export function moveBack( speed: CueSpeed): void {
+          let distance :number = 5
+          let speedArray: number[] = [-10, -20, -30]
+          let time :number = (distance / speedArray[speed]) * 1000 * -1// Converting to milliseconds
+          let toSend: string = ("bdf " + distance.toString() +" " + speedArray[speed].toString() + "\n");
+            //let toSend: string = ("bdf " + " +" " + speedArray[speed].toString() + "\n");
             serial.writeString(toSend);
             basic.pause(time)
 
@@ -95,12 +126,14 @@ namespace cue {
      * @param degrees counter clockwise angle to turn
      * @param speed in cm/s
      */
-    //% block="do left turn|%degrees|degrees at speed %speed| degrees/second"
+    //% block="do left turn"
     //% degrees.min=1 degrees.max=180
     //% degrees.fieldOptions.precision=1
     //% speed.min=1 speed.max=35
     //% speed.fieldOptions.precision=1
-    export function LeftTurn(degrees: number, speed: number): void {
+    export function LeftTurn(): void {
+          let degrees :number = 90;
+          let speed :number = 45;
 
            let time :number = (degrees / speed) * 1000 // Converting to milliseconds
             let toSend: string = ("bdt " + degrees.toString() +" "+ speed.toString() + "\n");
@@ -110,41 +143,25 @@ namespace cue {
     }
 
     /**
-     * Turn clockwise the specified degrees at specified speed(cm/s) and then stop.
-     * @param degrees clockwise angle to turn
+     * Turn counter-clockwise the specified degrees at specified speed(cm/s) and then stop.
+     * @param degrees counter clockwise angle to turn
      * @param speed in cm/s
      */
-    //% block="do right turn|%degrees|degrees at speed %speed| degrees/second"
+    //% block="do right turn"
     //% degrees.min=1 degrees.max=180
     //% degrees.fieldOptions.precision=1
     //% speed.min=1 speed.max=35
     //% speed.fieldOptions.precision=1
-    export function RightTurn(degrees: number, speed: number): void {
+    export function rightTurn(): void {
+          let degrees :number = 90;
+          let speed :number = 45;
 
-          let time :number = (degrees / speed) * 1000 // Converting to milliseconds
+           let time :number = (degrees / speed) * 1000 // Converting to milliseconds
             let toSend: string = ("bdt -" + degrees.toString() +" "+ speed.toString() + "\n");
             serial.writeString(toSend);
             basic.pause(time)
 
-
     }
-
-    /**
-     * Set robot's speed - keeps moving. Add a stop in program when you want to stop the robot
-     * @param left in cm/s
-     * @param right in cm/s
-     */
-    //% block="set wheel speed|left %left|cm/s right %right|cm/s"
-    //% left.min=1 left.max=35
-    //% left.fieldOptions.precision=1
-    //% right.min=1 right.max=35
-    //% right.fieldOptions.precision=1
-    export function SetWheelSpeeds(left: number, right: number): void {
-        // Add code here
-        let toSend: string = ("bsws " + left.toString() + " " + right.toString() + "\n");
-        serial.writeString(toSend);
-    }
-
     /**
      * Stop robot.
      */
