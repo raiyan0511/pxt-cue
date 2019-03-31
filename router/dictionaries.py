@@ -176,14 +176,15 @@ class Functions:
         
 
     def move_forward(self, distance, speed):
+        
         if speed == 0: 
             return
         if distance < 0:
             speed = - speed
-
-        time = (distance / speed) 
+        
+        time = (float(distance) / speed)
         self._robot.commands.body.stage_wheel_speeds(speed, speed)
-
+        
         return ['bss', {'args': (), 'time': time}]
 
     def do_turn(self, degrees, speed):
@@ -192,7 +193,7 @@ class Functions:
         if degrees < 0:
             speed = -speed 
 
-        time = (degrees / speed) 
+        time = (float(degrees) / speed) 
         self._robot.commands.body.stage_pose(0, 0, degrees, time - 0.5)  # stops faster
 
         return ['bss', {'args': (), 'time': time}]

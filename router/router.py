@@ -107,7 +107,6 @@ class Router(object):
             # parse the serial port input for one command
             received_cmd = self._uart.readline().split("\\n")[0].split("\x00")[-1]
 
-
             # split it into fn_key and then the args
             cmd_list = received_cmd.split()
 
